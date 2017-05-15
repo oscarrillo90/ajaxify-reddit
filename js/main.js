@@ -22,21 +22,21 @@ $.ajax({
 }
 
 function onSuccess(json) {
-  console.log(json);
-  var title = json.data.children["0"].data.title;
-  var img = json.data.children["0"].data.preview.images["0"].resolutions["0"].url;
-  var timeStamp = json.data.children["0"].data.created;
-  var user = json.data.children["0"].data.author;
-  var url = json.data.children["0"].data.url;
-  $('#main').append(`<img src="${img}">`);
-  $('#main').append(`<p>${title}</p>`);
-  $('#main').append(`<p>${timeStamp}`);
-  $('#main').append(`<p>${user}`);
-  $('#main').append(`<a href="${url}">Link</a>`);
-  
+console.log(json);
+for(i = 0; i < json.data.children.length; i++) {
 
-
+var title = json.data.children[i].data.title;
+var img = json.data.children[i].data.thumbnail;
+var timeStamp = json.data.children[i].data.created;
+var user = json.data.children[i].data.author;
+var url = json.data.children[i].data.url;
+$('.block').append(`<img src="${img}">`);
+$('.block').append(`<h3>${title}</h3>`);
+$('.block').append(`On:<p>${timeStamp}`);
+$('.block').append(`By:<p>${user}`);
+$('.block').append(`<a href="${url}">Link</a>`);
 }
+};
 
 function onError(a, b, c){
   console.log(a);
