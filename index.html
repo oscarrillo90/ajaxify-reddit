@@ -3,25 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ajaxify Reddit</title>
+    <title>AJAXify Reddit</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" href="css/global.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Hammersmith+One|Racing+Sans+One|Yantramanav" rel="stylesheet">
   </head>
   <body>
 
+  <img id="head" src="images/reddit_icon.png" alt="Reddit Head">
   <div class="container">
     <div class="row">
-        <h1>Reddit</h1>
+      <div class="col-md-4">
+        <h1>r/Funny</h1>
+      </div>
+      <nav class="col-md-8">
+        <ul>
+          <li><a href="https://www.reddit.com/r/funny/new/">new</a></li>
+          <li><a href="https://www.reddit.com/r/funny/rising/">rising</a></li>
+          <li><a href="https://www.reddit.com/r/funny/controversial/">controversial</a></li>
+          <li><a href="https://www.reddit.com/r/funny/top/">top</a></li>
+          <li><a href="https://www.reddit.com/r/funny/gilded/">gilded</a></li>
+          <li><a href="https://www.reddit.com/r/funny/wiki/">wiki</a></li>
+          <li><a href="https://www.reddit.com/r/funny/ads/">promoted</a></li>
+        </ul>
+      </nav>
     </div>
 
-    <div id="main">
-        <div class ="row">
-          <div class="col-md-8">
-            <div class ="block">
-            </div>
-         </div>
-       </div>
-    </div>
+    <div id="main"></div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

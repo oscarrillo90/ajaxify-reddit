@@ -1,48 +1,47 @@
 /* GLOBAL VARIABLES UP HERE */
 var frontPage = 'https://www.reddit.com/.json';
-
-
-
-
+var rFunny = 'https://www.reddit.com/r/funny/.json';
 
 $(document).ready(function(){
 /* FUNCTION EXECUTION HERE */
-  callReddit();
+  console.log('Go forth and code!');
+
+  function getReddit() {
+      $.ajax({
+        method: "GET",
+        url: rFunny,
+        data: $("form").serialize(),
+        success: onSuccess,
+        error: onError
+      });
+    }
+
+  function onSuccess(json) {
+    for (var i = 0; i < json.data.children.length; i++) {
+      var listingImage = json.data.children[i].data.preview.images["0"].resolutions["0"].url;
+      var clickedImage = json.data.children[i].data.preview.images["0"].source.url;
+      var title = json.data.children[i].data.title;
+      var titleUrl = json.data.children[i].data.url;
+      var postedTime = new Date (json.data.children[i].data.created);
+      var author = json.data.children[i].data.author;
+      var authorFlare = json.data.children[i].data.author_flair_text;
+      $('.container').append(`<a href=${clickedImage}><img src = ${listingImage}/></>`)
+        .append(`<h3><a href=${titleUrl}>${title}</a></h3>`)
+        .append(`<p>submitted on ${postedTime} by ${author} <hr>`);
+    }
+  }
+
+    function onError(xhr, status, errorThrown) {
+    alert("Sorry, there was a problem!");
+    console.log("Error: " + errorThrown);
+    console.log("Status: " + status);
+    console.dir(xhr);
+  }
+getReddit();
 
 });
 
-function callReddit(){
-$.ajax({
-  method: 'GET',
-  url: frontPage,
-  dataType: 'json',
-  success: onSuccess,
-  error: onError
-});
-}
 
-function onSuccess(json) {
-console.log(json);
-for(i = 0; i < json.data.children.length; i++) {
-
-var title = json.data.children[i].data.title;
-var img = json.data.children[i].data.thumbnail;
-var timeStamp = json.data.children[i].data.created;
-var user = json.data.children[i].data.author;
-var url = json.data.children[i].data.url;
-$('.block').append(`<img src="${img}">`);
-$('.block').append(`<h3>${title}</h3>`);
-$('.block').append(`On:<p>${timeStamp}`);
-$('.block').append(`By:<p>${user}`);
-$('.block').append(`<a href="${url}">Link</a>`);
-}
-};
-
-function onError(a, b, c){
-  console.log(a);
-  console.log(b);
-  console.log(c);
-}
 
 /* FUNCTION DEFINITION HERE */
 /* TIP: don't forget scope! */
